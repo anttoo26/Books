@@ -35,9 +35,6 @@ public class BookBuyerGui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String bookTitle = bookTitleField.getText();
-                // Lógica para enviar la solicitud de búsqueda al agente aquí
-                // Puedes llamar a métodos en el agente desde aquí
-                // Ejemplo: myAgent.searchBook(bookTitle);
             }
         });
 
