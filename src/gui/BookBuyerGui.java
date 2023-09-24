@@ -29,7 +29,7 @@ import agents.BookBuyerAgent;
 public class BookBuyerGui extends JFrame {
 	private BookBuyerAgent myAgent;
 	
-	private JTextField titleField, priceField;
+	private JTextField titleField;
         private JButton buscarButton;
 	
 	public BookBuyerGui(BookBuyerAgent e) {
@@ -58,7 +58,7 @@ public class BookBuyerGui extends JFrame {
 		setResizable(false);
 	}
 	
-	public void showGui() {
+	public void shoowGui() {
 	  pack();
 	  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	  int centerX = (int)screenSize.getWidth() / 2;
