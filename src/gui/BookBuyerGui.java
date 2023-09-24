@@ -8,42 +8,63 @@ package gui;
  *
  * @author antto
  */
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import agents.BookBuyerAgent;
-import jade.core.AID;
-import jade.lang.acl.ACLMessage;
+
 public class BookBuyerGui extends JFrame {
-    private JTextField bookTitleField;
-    private JButton searchButton;
-
-    public BookBuyerGui() {
-        setTitle("Book Buyer Agent");
-        setSize(400, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
-
-        JLabel bookTitleLabel = new JLabel("Ingrese el nombre del libro:");
-        bookTitleField = new JTextField(20);
-        searchButton = new JButton("Buscar");
-
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String bookTitle = bookTitleField.getText();
-            }
-        });
-
-        panel.add(bookTitleLabel);
-        panel.add(bookTitleField);
-        panel.add(searchButton);
-
-        getContentPane().add(panel);
-        setVisible(true);
-    }
-
+	private BookBuyerAgent myAgent;
+	
+	private JTextField titleField, priceField;
+        private JButton buscarButton;
+	
+	public BookBuyerGui(BookBuyerAgent e) {
+		super(e.getLocalName());
+		
+		myAgent = e;
+		
+		JPanel j = new JPanel();
+		j.setLayout(new GridLayout(2, 2));
+		j.add(new JLabel("Book title:"));
+		titleField = new JTextField(15);
+		j.add(titleField);
+		buscarButton= new JButton("Search");
+		j.add(buscarButton);
+		getContentPane().add(j, BorderLayout.CENTER);
+		
+		j = new JPanel();
+		getContentPane().add(j, BorderLayout.SOUTH);
+		
+		addWindowListener(new WindowAdapter() {
+		  public void windowClosing(WindowEvent e) {
+		    myAgent.doDelete();
+		  }
+		});
+		
+		setResizable(false);
+	}
+	
+	public void showGui() {
+	  pack();
+	  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	  int centerX = (int)screenSize.getWidth() / 2;
+	  int centerY = (int)screenSize.getHeight() / 2;
+	  
+	  setLocation(centerX - getWidth() / 2, centerY - getHeight() / 2);
+	  super.setVisible(true);
+	}
 }
