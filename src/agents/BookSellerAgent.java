@@ -1,18 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package agents;
 
-/**
- *
- * @author antto
- */
 import java.util.Hashtable;
 
 import behaviours.OfferRequestServer;
 import behaviours.PurchaseOrderServer;
+import behaviours.RequestPerformer;
 import gui.BookSellerGui;
+import jade.core.AID;
 
 import jade.core.Agent;
 import jade.core.behaviours.*;
@@ -22,7 +16,6 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 
 public class BookSellerAgent extends Agent{
-
 	private Hashtable catalogue;
 	private BookSellerGui gui;
 	
@@ -75,4 +68,5 @@ public class BookSellerAgent extends Agent{
 	public Hashtable getCatalogue() {
 	  return catalogue;
 	}
+        
 }

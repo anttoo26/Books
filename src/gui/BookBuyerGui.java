@@ -27,7 +27,7 @@ import javax.swing.JTextField;
 import agents.BookBuyerAgent;
 
 public class BookBuyerGui extends JFrame {
-	private BookBuyerAgent myAgent;
+	private BookBuyerAgent myAgente;
 	
 	private JTextField titleField;
         private JButton buscarButton;
@@ -35,15 +35,23 @@ public class BookBuyerGui extends JFrame {
 	public BookBuyerGui(BookBuyerAgent e) {
 		super(e.getLocalName());
 		
-		myAgent = e;
+		myAgente = e;
 		
 		JPanel j = new JPanel();
 		j.setLayout(new GridLayout(2, 2));
 		j.add(new JLabel("Book title:"));
 		titleField = new JTextField(15);
 		j.add(titleField);
+                
 		buscarButton= new JButton("Search");
 		j.add(buscarButton);
+                buscarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nom = titleField.getText();
+                myAgente.metodoMostrar(nom);
+            }
+        });
 		getContentPane().add(j, BorderLayout.CENTER);
 		
 		j = new JPanel();
@@ -51,7 +59,7 @@ public class BookBuyerGui extends JFrame {
 		
 		addWindowListener(new WindowAdapter() {
 		  public void windowClosing(WindowEvent e) {
-		    myAgent.doDelete();
+		    myAgente.doDelete();
 		  }
 		});
 		
