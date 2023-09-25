@@ -23,15 +23,6 @@ public class BookBuyerAgent extends Agent {
     
     gui = new BookBuyerGui(this);
     gui.shoowGui();
-    
-    Object[] args = getArguments();
-    if(args != null && args.length > 0) {
-      bookTitle = (String)args[0];
-      System.out.println("Book: " + bookTitle);
-    } else {
-      System.out.println("No target book title specified");
-      doDelete();
-    }
   }
   
   protected void takeDown() {
@@ -46,6 +37,7 @@ public class BookBuyerAgent extends Agent {
     return bookTitle;
   }
   public void metodoMostrar(String bookTitle){
+      this.bookTitle = bookTitle;
       addBehaviour(new TickerBehaviour(this, ticker_timer) {
         protected void onTick() {
           System.out.println("Trying to buy " + bookTitle);
